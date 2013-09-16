@@ -4,13 +4,13 @@
 			var last_konflikt = -1;
 			var last = -1;
 			var last_wart_out = -1;
-			var last_update= '';
+			var last_update = '';
 			var plansze = new Array();
 			var minuty = 0;
 
 			//var undoManager;
 
-				var undoManager = new UndoManager();
+				var undoManager;
 					
 				//var circleDrawer = new CircleDrawer('view');
 				//circleDrawer.setUndoManager(undoManager);
@@ -162,6 +162,10 @@
 			}
 			akt_planszaChar = n;
 
+
+			/**
+			* Function changes the current board to the next one.
+			*/
 			function plansza_dalej(){ //next board
 				var r=confirm("Czy na pewno chcesz zmienic plansze? \nStracisz wszystko, co zrobiles do tej pory");
 				if (r==true){
@@ -210,6 +214,9 @@
 
 			}
 
+			/**
+			* Function changes the current board to the previous one.
+			*/
 			function plansza_wroc(){ //former board
 				var r=confirm("Czy na pewno chcesz zmienic plansze? \nStracisz wszystko, co zrobiles do tej pory");
 				if (r==true){
@@ -261,7 +268,11 @@
 			sek = 0;
 			//o=document.getElementById('sekundy')
 
-			function odliczaj(o){ //countdown
+
+			/**
+			* Function is used to count down the time and ensure proper time display
+			*/
+			function odliczaj(o){ 
 				if (minuty < 10){
 					if (sek < 10){
 						o.innerHTML='0'+minuty + ':0'+sek;
@@ -287,7 +298,10 @@
 			}
 
 
-			function rysujKrawedzie(){ //draw borders
+			/**
+			* Function draws boardes of the board
+			*/
+			function rysujKrawedzie(){ 
 				var i;
 				for(i = 0; i < 81; i++){
 					if ((i + 1) % 3 == 0){
@@ -305,6 +319,9 @@
 				}
 			}
 
+			/**
+			* Function gives coordinates of i-th square of the board
+			*/
 			function wspolrzedne(i){ //coordinates of ...
 				if (i < 0 || i > 80) {
 					//alert("wspolrzedne: zle dane");
@@ -312,11 +329,16 @@
 				return Math.floor(i/9) + 10 * (i % 9) + 11;
 			}
 
-
-			function wartosc_z_nr(nr){ //the value from square number ...
+			/**
+			* Function gives the value of i-th square
+			*/
+			function wartosc_z_nr(nr){ 
 				return $('#i' + nr).val();
 			}
 
+			/**
+			* Function returns an array of numbers of squares in one raw
+			*/
 			function wiersz(i){ //row
 				if (i < 1 || i > 9) {
 					//alert("wiersz: Zly wiersz");
@@ -328,6 +350,9 @@
 				return w;
 			}
 
+			/**
+			* Function returns an array of numbers of squares in one column
+			*/
 			function kolumna(i){ //column
 				if (i < 1 || i > 9){
 					//alert("kolumna: Zly argument");
@@ -339,13 +364,19 @@
 				return w;
 			}
 
+			/**
+			* Function highlights selected block of 9 squares
+			*/
 			function podswietlTablice(t){
 				for(i = 0; i < 9; i++){
 					$('#td'+t[i]).css('background-color', '#7cfc00');
 				}
 			}
 
-			function sprawdz_duplikatyTablice(t, a){ //check for duplicates in table
+			/**
+			* Function chceks if there are duplicates in the board
+			*/
+			function sprawdz_duplikatyTablice(t, a){ 
 				//debug += 'sprawdzam<br/>';
 				var vv = $('#i' + a).val();
 				//alert('wart. wpisana: '+vv);
@@ -381,7 +412,11 @@
 				podswietlTablice_mycha_norma(i);
 			}
 
-			function podpowiedz(nr){ //Hint
+
+			/**
+			* Function is responsible for the hint functionallity
+			*/
+			function podpowiedz(nr){ 
 				//alert('podpowiedz dla pola: '+nr);
 				var w = new Array();
 				debug = 'podpwiedz: <br/>';
@@ -457,6 +492,9 @@
 				//podswietlTablice(kwadrat(1 + Math.floor((i-10)/30) + 3 * Math.floor(((i % 10)-1)/3)));
 			}
 
+			/**
+			* Function checks if selected square number has value that is already on the board
+			*/
 			function sprawdz_duplikaty(i){ //check for duplicates
 				//alert('sprawdzam!');
 
@@ -469,10 +507,16 @@
 				$("#debug").html(debug);
 			}
 
+			/**
+			* Function hides the whole board
+			*/
 			function wygas(){ //fade
 				$(".field").css('background-color', 'transparent');
 			}
 
+			/**
+			* Function returns an array of numbers of squares in one raw
+			*/
 			function kwadrat(i){ //square
 				if (i < 1 || i > 9){
 					//alert("kwadrat: Zly argument");
@@ -488,7 +532,10 @@
 				return w;
 			}
 
-			function poprawnaTablica(t){ //correctTable
+			/**
+			* Function checks if the fragment of board is correct
+			*/
+			function poprawnaTablica(t){ 
 				var o = "";
 				var result = true;
 				for(i = 0; i < 9; i++){
@@ -515,6 +562,9 @@
 		//}
             }
 
+			/**
+			* Function checks if the board is correct
+			*/
 			function poprawneRozwiazanie(){ //correct answer
 				var i;
 				for(i = 1; i <= 9; i++){
@@ -525,6 +575,9 @@
 				return true;
 			}
 
+			/**
+			* Function returns a string that represents a board
+			*/
 			function Plansza(opis){ //board(board description)
 				var i;
 				plansza = "<table class='ttt'>";
@@ -551,6 +604,10 @@
 
 //-------------------------------------------------------------------
 
+
+			/**
+			* Function changes the value of selected board
+			*/
 			function zmien_wartosc_pola(nr, na_co){ //change the value of a square
 				//$('#i' + nr).val() = 7;
 				//-----------------alert('pole: '+nr+' na: '+na_co);
