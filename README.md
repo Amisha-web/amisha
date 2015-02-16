@@ -1,7 +1,7 @@
 #Sudoku JavaScript Web App
 ---
 - **Technologies**: JavaScript, HTML5, CSS3, Twitter Bootstrap, AJAX, jQuery
-- **Link**: http://potanski.pl/projects/sudoku/
+- **Link**: http://sudoku-javascript.herokuapp.com/
 - **GitHub**: https://github.com/tomasz-potanski/sudoku
 - **Date**: March, 2013
 - **Project size**: about 1 000 lines of code
