@@ -366,12 +366,12 @@
 			*/
 			function sprawdz_duplikatyTablice(t, a){ 
 				var vv = $('#i' + a).val();
-				debug +='vv: '+vv+', a: '+a+'<br/>';
+				// debug +='vv: '+vv+', a: '+a+'<br/>';
 				for(i = 0; i < 9; i++){
 					var v = $('#i' + t[i]).val();
-					debug +='v: '+v+', t[i]: '+t[i]+'<br/>';
+					// debug +='v: '+v+', t[i]: '+t[i]+'<br/>';
 					if (t[i] != a && v == vv && v != ''){
-						debug+='<span class="czerwony">konflikt: '+'v: '+v+', vv: '+vv+',t[i]: '+t[i]+', a: '+a+'</span><br/>';
+						// debug+='<span class="czerwony">konflikt: '+'v: '+v+', vv: '+vv+',t[i]: '+t[i]+', a: '+a+'</span><br/>';
 						$('#td'+t[i]).css('background-color', 'red');
 						$('#td'+a).css('background-color', 'red');
 					}
@@ -400,7 +400,7 @@
 			*/
 			function podpowiedz(nr){ 
 				var w = new Array();
-				debug = 'podpwiedz: <br/>';
+				// debug = 'podpwiedz: <br/>';
 	
 				wwiersz = new Array();
 				kkolumna = new Array();
@@ -436,7 +436,7 @@
 		
 					if (!czy_jest){
 						w.push(i);
-						debug += i + "<br/>";
+						// debug += i + "<br/>";
 					}
 				
 				}
@@ -450,7 +450,7 @@
 					}
 					alert(tresc);
 				}
-				$("#debug").html(debug);
+				// $("#debug").html(debug);
 			}
 
 			function podswietl(i){ //highlight
@@ -467,7 +467,7 @@
 				sprawdz_duplikatyTablice(wiersz(i % 10), i);
 				sprawdz_duplikatyTablice(kolumna(Math.floor(i/10)), i);
 				sprawdz_duplikatyTablice(kwadrat(1 + Math.floor((i-10)/30) + 3 * Math.floor(((i % 10)-1)/3)), i);
-				$("#debug").html(debug);
+				// $("#debug").html(debug);
 			}
 
 			/**
