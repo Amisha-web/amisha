@@ -13,8 +13,9 @@
                 
 			var btnUndo = document.getElementById('undo');
 			var btnRedo = document.getElementById('redo');
-
-			var opisPlanszy = //board description
+			
+			//board description
+			var opisPlanszy = 
 				"020730001" +
 				"009010047" +
 				"000208900" +
@@ -436,7 +437,6 @@
 		
 					if (!czy_jest){
 						w.push(i);
-						// debug += i + "<br/>";
 					}
 				
 				}
@@ -450,7 +450,6 @@
 					}
 					alert(tresc);
 				}
-				// $("#debug").html(debug);
 			}
 
 			function podswietl(i){ //highlight
@@ -467,7 +466,6 @@
 				sprawdz_duplikatyTablice(wiersz(i % 10), i);
 				sprawdz_duplikatyTablice(kolumna(Math.floor(i/10)), i);
 				sprawdz_duplikatyTablice(kwadrat(1 + Math.floor((i-10)/30) + 3 * Math.floor(((i % 10)-1)/3)), i);
-				// $("#debug").html(debug);
 			}
 
 			/**
@@ -481,9 +479,6 @@
 			* Function returns an array of numbers of squares in one raw
 			*/
 			function kwadrat(i){ //square
-				//if (i < 1 || i > 9){
-					//alert("kwadrat: Zly argument");
-				//}
 				w = new Array();
 				x = ((i - 1) % 3) * 3 + 1;
 				y = (Math.floor((i - 1) / 3)) * 3 + 1;
@@ -515,14 +510,10 @@
 			}
 
             function updateUI() {
-		var btnUndo = document.getElementById('undo');
-		var btnRedo = document.getElementById('redo');
-		//if (btnUndo){
-                	btnUndo.disabled = !undoManager.hasUndo();
-		//}
-		//if (btnRedo){
-                	btnRedo.disabled = !undoManager.hasRedo();
-		//}
+				var btnUndo = document.getElementById('undo');
+				var btnRedo = document.getElementById('redo');
+            	btnUndo.disabled = !undoManager.hasUndo();
+                btnRedo.disabled = !undoManager.hasRedo();
             }
 
 			/**
@@ -640,7 +631,6 @@
 				$("table").css('border-spacing', '0');
 				rysujKrawedzie(); //draw borders
 				iwentuj();
-				//----------------------------
 	
 				$("#sprawdz").click(function(event){
 					if (poprawneRozwiazanie()){
